@@ -10,6 +10,12 @@ import { UniverSheetsPlugin } from '@univerjs/sheets';
 import { UniverSheetsFormulaPlugin } from '@univerjs/sheets-formula';
 import { UniverSheetsUIPlugin } from '@univerjs/sheets-ui';
 import { UniverUIPlugin } from '@univerjs/ui';
+import { UniverDocsDrawingPlugin } from '@univerjs/docs-drawing';
+import { IImageIoService, UniverDrawingPlugin } from '@univerjs/drawing';
+import { UniverDrawingUIPlugin } from '@univerjs/drawing-ui';
+import { UniverSheetsDrawingPlugin } from '@univerjs/sheets-drawing';
+import { UniverSheetsDrawingUIPlugin } from '@univerjs/sheets-drawing-ui';
+
 import { CustomPlugin } from '../customPulugin/customPlugin';
 import { forwardRef, useEffect, useImperativeHandle, useRef } from 'react';
 import DesignZhCN from '@univerjs/design/locale/zh-CN';
@@ -17,11 +23,15 @@ import UIZhCN from '@univerjs/ui/locale/zh-CN';
 import DocsUIZhCN from '@univerjs/docs-ui/locale/zh-CN';
 import SheetsZhCN from '@univerjs/sheets/locale/zh-CN';
 import SheetsUIZhCN from '@univerjs/sheets-ui/locale/zh-CN';
+import DrawingUIZhCN from '@univerjs/drawing-ui/locale/zh-CN';
+import SheetsDrawingUIZhCN from '@univerjs/sheets-drawing-ui/locale/zh-CN';
 
 import '@univerjs/design/lib/index.css';
 import "@univerjs/ui/lib/index.css";
 import "@univerjs/docs-ui/lib/index.css";
 import "@univerjs/sheets-ui/lib/index.css";
+import '@univerjs/drawing-ui/lib/index.css';
+import '@univerjs/sheets-drawing-ui/lib/index.css';
 
 // eslint-disable-next-line react/display-name
 const UniverSheet = forwardRef(({ data }, ref) => {
@@ -51,6 +61,8 @@ const UniverSheet = forwardRef(({ data }, ref) => {
           SheetsUIZhCN,
           UIZhCN,
           DesignZhCN,
+          DrawingUIZhCN,
+          SheetsDrawingUIZhCN,
         ),
       },
     });
@@ -73,6 +85,12 @@ const UniverSheet = forwardRef(({ data }, ref) => {
     univer.registerPlugin(UniverSheetsPlugin);
     univer.registerPlugin(UniverSheetsUIPlugin);
     univer.registerPlugin(UniverSheetsFormulaPlugin);
+
+    univer.registerPlugin(UniverDrawingPlugin);
+    univer.registerPlugin(UniverDrawingUIPlugin);
+    univer.registerPlugin(UniverSheetsDrawingPlugin);
+    univer.registerPlugin(UniverSheetsDrawingUIPlugin);
+
     univer.registerPlugin(CustomPlugin)
     // create workbook instance
     workbookRef.current = univer.createUnit(UniverInstanceType.UNIVER_SHEET, data);
